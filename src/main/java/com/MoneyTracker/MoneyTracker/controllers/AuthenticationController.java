@@ -12,6 +12,7 @@ import com.MoneyTracker.MoneyTracker.models.DTOs.UserSignupDTO;
 import com.MoneyTracker.MoneyTracker.services.AuthenticationService;
 
 import jakarta.validation.Valid;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -27,8 +28,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody UserLoginDTO loginDTO) {
-        String token = authenticationService.login(loginDTO);
-        return ResponseEntity.ok(token);
+    public ResponseEntity<Map<String, Object>> login(@Valid @RequestBody UserLoginDTO loginDTO) {
+        Map<String, Object> response = authenticationService.login(loginDTO);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   spring-app:
@@ -8,17 +8,22 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/moneytracker_db
-      - SPRING_DATASOURCE_USERNAME=me
-      - SPRING_DATASOURCE_PASSWORD=236236
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - JWT_SECRET=684C2F5961577166467076783637326D4E385A754E454A2B4D6F6E772F52376E6931587A3355612B306A55595341504D7774484F6B76782F56615164363047320A
-      - JWT_EXPIRATION=86400
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/moneytracker_db
+      SPRING_DATASOURCE_USERNAME: me
+      SPRING_DATASOURCE_PASSWORD: 236236
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      JWT_SECRET: 684C2F5961577166467076783637326D4E385A754E454A2B4D6F6E772F52376E6931587A3355612B306A55595341504D7774484F6B76782F56615164363047320A
+      JWT_EXPIRATION: 86400
     depends_on:
       mysql-db:
         condition: service_healthy
     networks:
       - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   flask-service:
     build:
@@ -27,19 +32,24 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - SPRING_API_URL=http://spring-app:8080/api/transactions/user/{user_id}/spending-by-category
+      SPRING_API_URL: http://spring-app:8080/api/transactions/user/{user_id}/spending-by-category
     depends_on:
       - spring-app
     networks:
       - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   mysql-db:
     image: mysql:8.0
     environment:
-      - MYSQL_ROOT_PASSWORD=236236
-      - MYSQL_DATABASE=moneytracker_db
-      - MYSQL_USER=me
-      - MYSQL_PASSWORD=236236
+      MYSQL_ROOT_PASSWORD: 236236
+      MYSQL_DATABASE: moneytracker_db
+      MYSQL_USER: me
+      MYSQL_PASSWORD: 236236
     ports:
       - "3306:3306"
     volumes:
@@ -52,6 +62,11 @@ services:
       retries: 5
     networks:
       - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   mysql-data:

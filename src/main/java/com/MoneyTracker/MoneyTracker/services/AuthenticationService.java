@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class AuthenticationService {
 
@@ -37,7 +40,7 @@ public class AuthenticationService {
         return "User registered successfully";
     }
 
-    public String login(UserLoginDTO loginDTO) {
+    public Map<String, Object> login(UserLoginDTO loginDTO) {
         User user = userRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new RuntimeException("Invalid email or password"));
 
@@ -45,6 +48,10 @@ public class AuthenticationService {
             throw new RuntimeException("Invalid email or password");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail());
+        Map<String, Object> response = new HashMap<>();
+        response.put("userId", user.getId());
+        response.put("token", token);
+        return response;
     }
 }
