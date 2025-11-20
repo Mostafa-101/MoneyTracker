@@ -1,0 +1,37 @@
+.TopBar {
+  background: linear-gradient(90deg, #0d6efd, #003f7f);
+  color: white;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.website-logo {
+  height: 60px;  /* increase from 40px or 45px to 60px */
+  margin-right: 10px;
+}
+
+
+.website_name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.logout_button {
+  color: white;
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.logout_button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}

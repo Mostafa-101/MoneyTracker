@@ -1,0 +1,129 @@
+.main-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.date-selector {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.date-selector select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.date-selector select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.transaction-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+.transaction-row {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.transaction-row:hover {
+  background: #e9ecef;
+}
+
+.header-row {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.transaction-row span {
+  flex: 1;
+  text-align: center;
+  overflow-wrap: break-word;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.transaction-row input,
+.transaction-row select {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.transaction-row input:focus,
+.transaction-row select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.edit-button,
+.delete-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.text-center {
+  font-size: 16px;
+  color: #555;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+  font-weight: 500;
+}
