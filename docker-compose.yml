@@ -43,6 +43,26 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  front:
+    build:
+      context: ./front/Se-Project
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_SPRING_API_URL=http://spring-app:8080
+      - VITE_FLASK_API_URL=http://flask-service:5000
+    depends_on:
+      - spring-app
+      - flask-service
+    networks:
+      - app-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   mysql-db:
     image: mysql:8.0
     environment:
